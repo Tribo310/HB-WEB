@@ -28,32 +28,15 @@ const StoryScreen = ({ onComplete }) => {
   const sentence = sentences[index] || "";
   const words = sentence.split(" ");
 
+  // calculate global character index for staggered animation
   let cumulative = 0;
-  const hearts = Array.from({ length: 30 });
 
   return (
-    <div className="relative w-full h-screen flex items-center justify-center bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 p-4 overflow-hidden">
-      {/* ❤️ Hearts falling */}
-      <div className="absolute inset-0 pointer-events-none">
-        {hearts.map((_, i) => (
-          <span
-            key={i}
-            className="heart"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-            }}
-          >
-            ❤️
-          </span>
-        ))}
-      </div>
-
-      {/* ✨ Word display */}
+    <div className="w-full h-screen flex items-center justify-center bg-blue-50 p-4">
       {index < sentences.length && (
         <h2
           key={index}
-          className="flex flex-wrap justify-center text-xl sm:text-2xl font-medium text-center z-10"
+          className="flex flex-wrap justify-center text-xl sm:text-2xl font-medium text-center"
         >
           {words.map((word, wi) => {
             const letters = word.split("");
@@ -75,41 +58,21 @@ const StoryScreen = ({ onComplete }) => {
           })}
         </h2>
       )}
-
       <style jsx>{`
         @keyframes letterIn {
           0% {
             opacity: 0;
-            transform: translateX(-20px);
+            transform: translateY(20px);
           }
           100% {
             opacity: 1;
-            transform: translateX(0);
+            transform: translateY(0);
           }
         }
-
         .animate-letter {
           display: inline-block;
           opacity: 0;
-          animation: letterIn 0.4s ease-out forwards;
-        }
-
-        @keyframes fall {
-          0% {
-            transform: translateY(-100px) rotate(0deg);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(110vh) rotate(360deg);
-            opacity: 0;
-          }
-        }
-
-        .heart {
-          position: absolute;
-          top: -2rem;
-          font-size: 1.5rem;
-          animation: fall 8s linear infinite;
+          animation: letterIn 0.5s ease-out forwards;
         }
       `}</style>
     </div>

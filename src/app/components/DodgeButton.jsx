@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useRef } from "react";
 
 const DodgeButton = () => {
@@ -20,7 +21,7 @@ const DodgeButton = () => {
   return (
     <button
       ref={btnRef}
-      className="absolute px-7 py-3 bg-blue-300 text-gray-700 rounded-lg shadow-lg transition text-sm sm:text-base"
+      className="absolute px-5 py-2 bg-purple-300 text-white font-medium rounded-full shadow-lg transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400"
       style={{ left: "70%", top: "50%", transform: "translateY(-50%)" }}
       onMouseEnter={dodge}
       onMouseDown={(e) => {
@@ -33,4 +34,4 @@ const DodgeButton = () => {
   );
 };
 
-export default DodgeButton;
+export { DodgeButton };
